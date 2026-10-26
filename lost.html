@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost and Found Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Lost and Found Management System</h1>
+    <p>Helping students find their lost belongings</p>
+</header>
+
+<nav>
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('lost')">Report Lost Item</button>
+    <button onclick="showSection('found')">Report Found Item</button>
+    <button onclick="showSection('items')">View Items</button>
+</nav>
+
+<main>
+    <section id="home">
+        <h2>Welcome!</h2>
+        <p>Report lost belongings or items you have found at school.</p>
+    </section>
+
+    <section id="lost" class="hidden">
+        <h2>Report a Lost Item</h2>
+        <form id="lostForm">
+            <input id="lostName" placeholder="Item name" required>
+            <input id="lostDescription" placeholder="Description" required>
+            <input id="lostLocation" placeholder="Last seen location" required>
+            <input id="lostContact" placeholder="Contact information" required>
+            <button type="submit">Submit Lost Report</button>
+        </form>
+        <p id="lostMessage"></p>
+    </section>
+
+    <section id="found" class="hidden">
+        <h2>Report a Found Item</h2>
+        <form id="foundForm">
+            <input id="foundName" placeholder="Item name" required>
+            <input id="foundDescription" placeholder="Description" required>
+            <input id="foundLocation" placeholder="Found location" required>
+            <input id="foundContact" placeholder="Contact information" required>
+            <button type="submit">Submit Found Report</button>
+        </form>
+        <p id="foundMessage"></p>
+    </section>
+
+    <section id="items" class="hidden">
+        <h2>Reported Items</h2>
+        <div id="itemList"></div>
+    </section>
+</main>
+
+<script src="lost.js"></script>
+<script src="found.js"></script>
+<script>
+    function showSection(sectionId) {
+        document.querySelectorAll("main section").forEach(section => {
+            section.classList.add("hidden");
+        });
+
+        document.getElementById(sectionId).classList.remove("hidden");
+
+        if (sectionId === "items") {
+            displayItems();
+        }
+    }
+</script>
